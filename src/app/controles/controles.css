@@ -1,0 +1,15 @@
+button{
+    border-radius: 20px;
+    background-color: rgb(214, 148, 223);
+    height: 50px;
+    width: 150px;
+    border: none;
+}
+
+.controles{
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30%;
+    padding: 20px;
+}

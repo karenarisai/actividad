@@ -1,0 +1,28 @@
+
+<form class="form-container" [formGroup]="form" (ngSubmit)="submit()">
+
+
+  <input type="text" formControlName="name" placeholder="Nombre del país">
+
+  <input type="text" formControlName="capital" placeholder="Capital del país">
+
+  <select formControlName="region">
+    @for (region of regions; track region) {
+        <option [value]="region">{{ region }}</option>
+    }
+    </select>
+
+    <input type="number" formControlName="population" placeholder="Población del país">
+    
+    <input type="text" formControlName="flag" placeholder="URL de la bandera del país">
+    
+    <button type="submit">Agregar País</button>
+
+    @if (!form.valid) {
+        <div class="alert">
+        Datos incompletos
+    </div>
+    }
+    
+
+</form>

@@ -1,0 +1,12 @@
+.centrado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+
+}
+
+.azul{
+    background-color: #1e293b;
+    color: white;
+}

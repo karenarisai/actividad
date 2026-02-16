@@ -1,0 +1,77 @@
+import { Component, signal, OnInit } from '@angular/core';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Country } from '../../interfaces/country.interface';
+import { validate } from '@angular/forms/signals';
+
+@Component({
+  selector: 'app-new-country-page',
+  imports: [ReactiveFormsModule, CommonModule],
+  templateUrl: './new-country-page.html',
+  styleUrl: './new-country-page.css',
+})
+export class NewCountryPage {
+  
+  regions: Country['region'][]=[
+    'Americas',
+    'Europe',
+    'Asia',
+    'Africa',
+    'Oceania'
+  ];
+
+  form: FormGroup = new FormGroup({
+    name: new FormControl( '', [Validators.required]),
+    capital:new FormControl('', [Validators.required]),
+    region:new FormControl( 'Americas', [Validators.required]),
+    population:new FormControl('', [Validators.required]),
+    flag:new FormControl('', [Validators.required]),
+  });
+
+
+ submit(): void {
+    console.log('Formulario activado');
+    //estructuracion de objetos
+    const {name, capital, region, population, flag} = this.form.value;
+
+    if (this.form.valid) {
+      console.log('Formulario válido:');
+      const newCountry: Country = {
+        name,
+        capital,
+        region,
+        population,
+        flag
+      }
+     
+     console.log('agregando nuevo elemento', newCountry);
+
+    }
+
+
+  }
+
+  resetForm() {
+    this.form.reset();
+  }
+
+  get name() {
+    return this.form.get('name');
+  }
+
+  get capital() {
+    return this.form.get('capital');
+  }
+
+  get population() {
+    return this.form.get('population');
+  }
+
+  get region() {
+    return this.form.get('region');
+  }
+
+  get flag() {
+    return this.form.get('flag');
+  }
+}

@@ -1,8 +1,8 @@
 import { Component, signal, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Country } from '../../interfaces/country.interface';
-import { validate } from '@angular/forms/signals';
+import { CountryService } from '../../services/country-service';
 
 @Component({
   selector: 'app-new-country-page',
@@ -36,42 +36,27 @@ export class NewCountryPage {
 
     if (this.form.valid) {
       console.log('Formulario válido:');
-      const newCountry: Country = {
-        name,
-        capital,
-        region,
-        population,
-        flag
-      }
-     
-     console.log('agregando nuevo elemento', newCountry);
 
+      const newCountry: Country = {
+        name: name!,
+        capital: capital!,
+        region: region!,
+        population: Number(population),
+        flag: flag!,
+      };
+
+      console.log('agregando nuevo elemento', newCountry);
+
+      // insertar el nuevo país en el servicio compartido
+      this.countryService.addCountry(newCountry);
+
+      // opcional: resetear el formulario
+      this.form.reset({ region: 'Americas' });
     }
 
 
   }
 
-  resetForm() {
-    this.form.reset();
-  }
+  constructor(private countryService: CountryService) {}
 
-  get name() {
-    return this.form.get('name');
-  }
-
-  get capital() {
-    return this.form.get('capital');
-  }
-
-  get population() {
-    return this.form.get('population');
-  }
-
-  get region() {
-    return this.form.get('region');
-  }
-
-  get flag() {
-    return this.form.get('flag');
-  }
 }

@@ -8,6 +8,8 @@
         <a [routerLink]="['/contact']">Contact</a>
         <a [routerLink]="['/about']">About</a>
         <a [routerLink]="['/new-country']">Add Country</a>
+        <a [routerLink]="['/login']">Login</a>
+        <a (click)="logout()">Logout</a>
     </nav>
  
     <button class="menu-btn" (click)="toggleMenu()">
